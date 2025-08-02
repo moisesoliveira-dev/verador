@@ -1,10 +1,16 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { GosacService } from './gosac.service';
+import { GosacApiService } from './gosac-api.service';
+import { GosacWebhookController } from './gosac-webhook.controller';
+import { ChatbotModule } from '../chatbot/chatbot.module';
 
 @Module({
-    imports: [ConfigModule],
-    providers: [GosacService],
-    exports: [GosacService]
+    imports: [
+        ConfigModule,
+        ChatbotModule
+    ],
+    controllers: [GosacWebhookController],
+    providers: [GosacApiService],
+    exports: [GosacApiService]
 })
 export class GosacModule { }
